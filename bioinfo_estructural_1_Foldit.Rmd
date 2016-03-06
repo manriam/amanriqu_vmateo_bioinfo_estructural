@@ -1,0 +1,102 @@
+---
+title: "Bioinformática Estructural"
+author: "Amaranta Manrique de Lara y Ramirez, Valeria Erendira Mateo Estrada"
+date: "4 de marzo de 2016"
+output: pdf_document
+---
+
+##<span style="color:lightblue">Tarea 1: Foldit</span>
+
+Este módulo consiste en familiarizarse con los conceptos relacionados con el plegamiento de proteínas. 
+
+En las células, la cadena de amino ácidos – la estructura primara – debe plegarse para llegar a la conformación y estructura funcional de la proteína; esto debe hacerse eficaz y eficientemente, con el fin de producir una proteína biológicamente activa. El proceso de plegamiento es dependiente de la secuencia de amino ácidos, la concentración de sales, el nivel de pH, la temperatura, la presencia de cofactores y de chaperonas moleculares para el plegamiento asistido. Para optimizar el plegado de la proteína deben tomarse en cuenta varios factores, como la posición de las cadenas hidrofóbicas e hidrofílicas, y la existencia de interacciones débiles estabilizadoras (e.g. puentes de hidrógeno).
+
+Dadas todas las posibles conformaciones de una sola cadena, el plegado de la cadena a su estructura correcta es un problema complejo que todavía sigue siendo estudiado, tanto experimentalmente como computacionalmente; esto último se hace con modelos y predicciones. 
+
+**Foldit** es un proyecto experimental de investigación en forma de juego de computadora, cuyo objtivo es plegar proteínas de la mejor manera posible tomando en cuenta los factores que existen en la realidad. 
+
+En esta tarea se completaron los puzzles de Foldit hasta el nivel 7-4 y se buscaron representaciones de algunos conceptos teóricos de plegamiento. 
+
+####1.1) Ejemplo de aminoácido con cadena lateral aromática.
+
+![1.1](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\cadena lateral aromática.JPG)
+
+Aquí se puede ver un aminoácido con cadena lateral aromática, marcado con un círculo azul. Podría ser fenilalanina (Phe, F), tirosina (Tyr, Y) o triptófano (Trp, W).
+
+####1.2) Ejemplo de aminoácido con cadena lateral chica. 
+
+![1.2.1](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\cadena lateral chica -1.jpg)
+
+Aquí se muestra marcado un residuo de prolina (Pro, P) - un aminoácido con cadena lateral chica - según el panel de secuencia y alineamiento.
+
+![1.2.2](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\cadena lateral chica -2.jpg)
+
+Aquí se muestra la misma proteína, y se señala el residuo de prolina. 
+
+####1.3) Ejemplo de giro en torno a los ángulos phi/psi de un residuo seleccionado.
+
+![1.3.1](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\phi -1.jpg)
+
+![1.3.2](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\phi -2.jpg)
+
+El residuo marcado con el círculo se gira. 
+
+**¿Qué pasa cuando sus vecinos tienen cadenas laterales voluminosas?**
+
+![1.3.3](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\phi -3.jpg)
+
+Si los vecinos tienen cadenas laterales voluminosas, como una cadena aromática, pueden generarse choques si se gira un residuo. 
+
+####1.4) Ejemplo de puentes de hidrógeno entre residuos de una alfa-hélice y entre hojas de una lámina beta. 
+
+![1.4](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\alfa-beta.jpg)
+
+Aquí se muestran puentes de hidrógeno que se forman entre una alfa-hélica y una beta-plegada. No pudimos encontrar ejemplos de esto en los puzzles tutoriales, por lo que hicimos un puzzle de principiantes: Mini arabidopsis Multi-Start Puzzle. 
+
+**¿Cuál de los estados de estructura secundaria les parece más difícil de programar?**
+
+Consideramos que las hojas de una lámina beta son más difíciles de programar que las alfa-hélices. Esto porque las hélices son más continuas y más fáciles de predecir a partir de la secuencia. En cambio las láminas beta son discontinuas, y su conformación mejora entre más las modifiques; es decir, necesita de "ayuda" para poder estar bien.
+
+
+####1.5) Ejemplo de residuo hidrofóbico expuesto y luego correctamente "enterrado" tras operaciones con los vecinos. 
+
+![1.5.1](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\residuo hidro -1.jpg)
+
+Las cadenas laterales naranjas son resiudos hidrofóbicos. El residuo marcado con un círculo verde se encuentra expuesto en este momento. 
+
+![1.5.2](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\residuo hidro -2.jpg)
+
+El mismo residuo se encuentra marcado con un círculo verde, sólo que ahora está enterrado dentro de la proteína. Esto se debe a que se giró el alfa hélice a su derecha y los resiudos de esa hélice cubrieron al residuo de interés. 
+
+####1.6) Ejemplo de conformaciones distinas con puntuaciones similares. 
+
+![1.6.1](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\conformaciones distintas -1.JPG)
+
+![1.6.2](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\conformaciones distintas -2.jpg)
+
+Aquí se muestran dos posibles conformaciones de una misma proteína con puntuaciones similares en el juego. Esto nos muestra lo difícil que puede ser evaluar una conformación y saber si es la verdadera. 
+
+####1.7) Calcula el tiempo que llevaría explorar todas las conformaciones posibles de uno de los péptidos o proteínas que utilicen en los puzzles.
+
+La **paradoja de Levinthal** se refiere a que las proteínas no se pliegan siempre en su conformación más óptima, ya que les llevaría demasiado tiempo. La estimación de cuánto tiempo tardaría en explorar todos los posibles estados está dada por $Texpl=tX^a$. Donde:
+
+* *a* es el número de aminoácidos de la proteína
+* *X* es el número de estados diferentes que puede tomar una cadena de aminoácidos, y
+* *t* es el tiepo que tarda en haber un cambio de estado en medio fisiológico.
+
+En el nivel 6-3 de los tutoriales de Foldit, se presenta un péptido con la secuencia de aminoácidos:
+
+![1.7](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\Foldit\paradoja.jpg)
+
+Estos son 55 aminoácidos en la secuencia molde tmpl1. 
+
+Para t y X se ocupan los valores del ejemplo visto en clase, donde $X=10$ y $t=10e-13$.
+
+Por lo tanto, el tiempo sería igual a $Texpl=(10e-13)*(10)^(55)=10e+42 segundos$. 
+
+Esto es más o menos $1.1574074e+37$ días, o $3.1709792e+34$ años. Claramente, esto es muchísimo más que lo que toma a una célula viva plegar sus proteínas. Es una conclusión razonable que no siempre se van a plegar en su conformación más estable en la naturaleza. 
+
+
+
+******
+
