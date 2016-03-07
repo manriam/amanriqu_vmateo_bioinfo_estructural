@@ -1,0 +1,78 @@
+---
+title: "Bioinformática Estructural"
+author: "Amaranta Manrique de Lara y Ramirez, Valeria Erendira Mateo Estrada"
+date: "4 de marzo de 2016"
+output: pdf_document
+---
+
+##<span style="color:lightblue">Tarea 4: Modelaje de proteínas</span>
+
+En esta práctica se dispone de la secuencia de una proteína A y se quiere conocer su estrctura tridimensional. 
+
+####4.1) Elegir una secuencia S de la superfamilia de la tarea 3. 
+
+Elegimos la secuencia de la acuaporina de humano  que utilizamos en la práctica anterior (**d1h6ia**). Obtuvimos las estructuras templete para hacer el modelo empleando la página (http://toolkit.tuebingen.mpg.de/hhpred).
+
+####4.2) Seleccionar al menos una estructura molde usando HHpred. 
+
+Se escogieron las siguientes estructuras:
+
+Identificador | Identidad
+------------- | -----------
+1j4n_.pdb     | 80%
+3d9s_.pdb     | 49%
+4nef_.pdb     | 46%
+
+####4.3) Utilizar MODELLER para construir dos modelos M1 y M2 de S y comprobar su estima de calidad con DOPE. 
+
+Los valores menores en DOPE indican que el modelo es más óptimo. 
+
+Modelo        | DOPE score
+------------- | --------------
+M1            | -18567.000000
+M2            | -25923.000000
+
+![4.3.1](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\m1.jpg)
+
+![4.3.2](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\m2.jpg)
+
+####4.4) Evaluar la calidad de los modelos obtenidos comparándolos con la estructura conocida.
+
+Para esto se utilizó MAMMOTH, como en la práctica anterior.
+
+Se indican el alineamiento obtenido, el RMSD y se muestra la superposición entre modelo y estructura experimental. 
+
+#####<span style="color:blue">**M1**</span>
+
+```
+mammoth -p d1h6ia_.pdb -e modbase-model_7430d04623f7d90369572c262d50e9c8.pdb -o log.out
+```
+Z-score   | E-value        | RMSD
+--------- | -------------- | -------------
+29.204150 | 0.87496677E-12 | 4.38 Angstrom
+
+![4.4.1](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\m1ali.jpg)
+
+![4.4.2](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\m1super.jpg)
+
+![4.4.3](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\m1super1.jpg)
+
+#####<span style="color:blue">**M2**</span>
+```
+mammoth -p d1h6ia_.pdb -e modbase-model_6420d06613f7d90369372c262750e4c6.pdb -o log.out
+```
+Z-score   | E-value        | RMSD
+--------- | -------------- | -------------
+31.404220 | 0.83596975E-12 | 8.72 Angstrom
+
+![4.4.4](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\m2ali.jpg)
+
+![4.4.5](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\m2super.jpg)
+
+![4.4.6](C:\Users\USUARIO\Documents\TODO - Lenovo backup\LCG\Semestre IV\Bioinformática\Bruno Contreras\m2super1.jpg)
+
+#####<span style="color:blue">**Evaluación**</span>
+
+Ya que M1 y la estructura experimental sobrelapan, este modelo es el que mejor se adecua a la acuaporina query. Aunque los loops coinciden en cuanto a las dimensiones, hay problemas en la transposición. Sin embargo, los datos indican que éste es el mejor modelo para la estructura tridimensional de **d1h6ia**. Por ejemplo, el RMSD indica que la estrucutra tiene un mejor ajuste. En cambio, el modelo M2 tiene un menor ajuste, existe menos superposición entre estructuras, y tanto el Z-score como el RMSD son más altos; todos estos datos indican que M2 está más alejado de la proteína experimental. 
+
+****
